@@ -20,7 +20,10 @@ import { User } from './entities/user.entity';
   controllers: [AppController],
   imports: [
     ScheduleModule.forRoot(),
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: ['.env.local', '.env'],
+    }),
     TerminalModule,
     CardModule,
     TaskModule,

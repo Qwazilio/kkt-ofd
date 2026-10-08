@@ -1,10 +1,7 @@
 import axios from 'axios';
 
-//const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_SERVER_URL;
-const BASE_URL = 'http://localhost:3001'; // Fallback for local development
-
 const api= axios.create({
-    baseURL: BASE_URL,
+    baseURL: import.meta.env.VITE_API_URL,
 });
 
 api.interceptors.request.use((config) => {

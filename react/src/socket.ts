@@ -1,7 +1,8 @@
 // socket.ts
 import { io, Socket } from "socket.io-client";
 
-const SOCKET_URL = "http://localhost:3001";
+//const SOCKET_URL = "http://localhost:3001";
+const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 const sockets = new Map<string, Socket>();
 
 export function getSocket(namespace = ""): Socket {
