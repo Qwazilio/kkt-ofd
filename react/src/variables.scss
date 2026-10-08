@@ -1,0 +1,55 @@
+//default vars
+
+$themes: (
+        light: (
+                bg: #EDF1EF,
+                surface: #FFFFFF,
+                text: #16211D,
+                text-muted: #5E6B66,
+                border: #D8E0DC,
+                primary: #0E5A50,
+                on-primary: #FFFFFF,
+                success: #2A6F48,
+                success-bg: #E3F1E8,
+                warning: #8F5409,
+                warning-bg: #FCEFD9,
+                danger: #B3261E,
+                danger-bg: #FBE3E0,
+        ),
+        dark: (
+                bg: #0F1614,
+                surface: #18221F,
+                text: #E7EEEB,
+                text-muted: #93A39C,
+                border: #2A3833,
+                primary: #4FC3AE,
+                on-primary: #08201B,
+                success: #6CCB93,
+                success-bg: #183024,
+                warning: #F0B35A,
+                warning-bg: #3A2C12,
+                danger: #FF8A80,
+                danger-bg: #3D1B18,
+        ),
+);
+
+@function c($name) {
+        @return var(--#{$name});
+}
+
+$bg: c(bg);
+$surface: c(surface);
+$text: c(text);
+$text-muted: c(text-muted);
+$border: c(border);
+$primary: c(primary);
+$on-primary: c(on-primary);
+$success: c(success);
+$success-bg: c(success-bg);
+$warning: c(warning);
+$warning-bg: c(warning-bg);
+$danger: c(danger);
+$danger-bg: c(danger-bg);
+
+$layout-breakpoint-small:  768px;
+$border-radius-em: 0.5em;

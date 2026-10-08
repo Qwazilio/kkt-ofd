@@ -1,0 +1,48 @@
+@use '@/variables' as variables;
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+
+    .menu{
+        display: flex;
+        border-bottom: 1px solid variables.$border;
+
+        .active{
+            border-bottom: 1px solid variables.$primary;
+            font-weight: bold;
+            color: variables.$primary
+        }
+
+        div{
+            padding: 10px;
+        }
+    }
+    .content{
+        padding: 15px;
+    }
+
+    .footer{
+        margin-top: 10px;
+        display: flex;
+        border-top: 1px solid variables.$border;
+        flex-direction: row-reverse;
+    }
+
+    input, button{
+        margin: 0.25em;
+        padding: 0.5em;
+        border-radius: 0.25em;
+    }
+
+    button{
+        background-color: variables.$primary;
+    }
+
+    button:disabled {
+        background-color: darkgray;
+        color: white; /* Цвет текста */
+        cursor: not-allowed; /* Курсор "запрещено" */
+        opacity: 0.6; /* Прозрачность */
+    }
+}

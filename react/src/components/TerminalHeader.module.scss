@@ -1,0 +1,74 @@
+@use '@/variables';
+
+.wrapper {
+  margin-bottom: 10px;
+
+  .header{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    grid-gap: 15px;
+
+    .board{
+      display: flex;
+      flex-direction: row;
+      align-items: end;
+
+      .stat{
+        border: 1px solid variables.$border;
+        border-radius: variables.$border-radius-em;
+        padding: 10px;
+        margin-right: 10px;
+        background-color: variables.$surface;
+      }
+    }
+  }
+
+  @media (max-width: variables.$layout-breakpoint-small) {
+    .header{
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+    }
+  }
+  
+
+  .tools{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    grid-gap: 15px;
+
+    .search{
+      width: 500px;
+      color: variables.$text;
+      user-select: none;
+    }
+    
+    button {
+      background-color: variables.$surface;
+      padding: 10px;
+      border-radius: 10px;
+      margin: 0.25em;
+    }
+
+    .tool{
+      background-color: variables.$surface;
+      cursor: pointer;
+      user-select: none;
+      border: 1px solid variables.$border;
+      border-radius: variables.$border-radius-em;
+      color: variables.$text;
+      margin: 0.25em;
+      padding: 10px;
+
+      label{
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+

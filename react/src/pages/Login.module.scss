@@ -1,0 +1,65 @@
+@use '@/variables';
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+
+  .content{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid variables.$border;
+    border-radius: variables.$border-radius-em;
+    overflow: hidden;
+
+    .poster, .form{
+      padding: 30px;
+    }
+
+    .poster{
+      background-color: variables.$primary;
+      color: variables.$on-primary;
+      flex-wrap: wrap;
+      width: 50%;
+    }
+
+    .form{
+      flex-grow: 1;
+      display: flex;
+      background-color: variables.$surface;
+      flex-direction: column;
+      width: 450px;
+      grid-gap: 15px;
+
+      h4{
+        color: variables.$text-muted;
+        font-size: 90%;
+      }
+
+      input{
+        background-color: variables.$bg;
+      }
+
+      input, button{
+        width: 100%;
+        border-radius: variables.$border-radius-em;
+        padding: 10px;
+      }
+
+      .in{
+        display: flex;
+        flex-direction: column;
+        grid-gap: 5px;
+      }
+    }
+
+    @media (max-width: variables.$layout-breakpoint-small) {
+      .poster{
+        display: none;
+      }
+    }
+  }
+
+}

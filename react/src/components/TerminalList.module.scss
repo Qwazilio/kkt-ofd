@@ -1,0 +1,88 @@
+@use '@/variables' as variables;
+
+.wrapper{
+  position: relative;
+
+  .headerTerminal{
+    position: sticky;
+    max-width: 100%;
+    top: -5px;
+    color: variables.$on-primary !important;
+    background-color: variables.$primary !important;
+  }
+
+
+
+  .terminal, .headerTerminal{
+    border-inline: 1px solid variables.$border;
+    border-bottom: 1px solid variables.$border;
+
+    background-color: variables.$surface;
+    color: variables.$text;
+    padding: 0.5em;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    cursor: pointer;
+
+    .deadlines{
+      display: flex;
+      font-size: 70%;
+      padding: 2.5px;
+      font-weight: bold;
+
+      div{
+        padding: 2.5px;
+        border-radius: variables.$border-radius-em;
+      }
+    }
+
+    .important{
+      font-weight: bold !important;
+    }
+
+    .info, label{
+      overflow-wrap: anywhere;
+      padding: 0.5em;
+    }
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+  }
+
+
+  .terminal:hover{
+    background-color: variables.$bg;
+  }
+
+  @media (max-width: 768px) {
+    .headerTerminal {
+      display: none;
+    }
+  }
+}
+
+.attention, .warning, .done, .broken{
+  color: variables.$text !important;
+}
+
+.success{
+  background: variables.$success-bg !important;
+  color: variables.$success !important;
+}
+
+.broken{
+  background: variables.$danger-bg !important;
+  color: variables.$danger !important;
+}
+
+.done{
+  background: variables.$success !important;
+}
+
+.warning {
+  color: variables.$warning !important;
+  background: variables.$warning-bg !important;
+}

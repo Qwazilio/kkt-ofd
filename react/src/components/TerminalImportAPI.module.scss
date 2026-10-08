@@ -1,0 +1,51 @@
+@use '@/variables' as variables;
+
+.wrapper {
+  pointer-events: all;
+
+  .list{
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    .node{
+      display: flex;
+
+      input{
+        flex-grow: 1;
+      }
+    }
+
+    h2{
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+
+  .new {
+      text-align: center;
+      font-weight: bold;
+
+      form{
+        display: flex;
+        justify-content: space-between;
+
+        input {
+          flex-grow: 1;
+        }
+      }
+
+      button{
+        width: 100%;
+        color: variables.$on-primary;
+        background-color: variables.$primary;
+        border-radius: variables.$border-radius-em;
+        border: 1px dashed variables.$border;
+        font-weight: bold;
+    }
+  }
+
+  .footer{
+    display: flex;
+    flex-direction: row-reverse;
+  }
+}

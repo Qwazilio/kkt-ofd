@@ -1,0 +1,55 @@
+@use '@/variables' as variables;
+
+.wrapper{
+    background-color: variables.$bg;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    border-radius: variables.$border-radius-em;    
+    border: 1px solid variables.$border;
+    color: variables.$text !important;
+    max-height: calc(100vh - 100px);
+    z-index: 99999999;
+    width: 600px;
+    overflow: hidden;
+    font-size: 85%;
+    box-shadow:  0 0 5px variables.$primary !important;
+    overscroll-behavior: contain;
+
+
+    @media (max-width: variables.$layout-breakpoint-small) {
+        min-height: 100dvh;
+        width: 100%;
+        left: 0 !important;
+        top: 0 !important;
+    }
+
+
+
+    .top{
+        user-select: none;
+        width: 100%;
+        color: variables.$on-primary;
+        background-color: variables.$primary;
+        padding: 10px;
+        display: flex;
+        font-size: 125%;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+
+        .cancel{
+            cursor: pointer;
+        }
+    }
+    .body{
+        overflow: auto;
+        user-select: text !important;
+        width: 100%;
+        padding: 5px;
+        scrollbar-width: thin;
+        scrollbar-color: variables.$border transparent;
+        overscroll-behavior: contain;
+    }
+
+}

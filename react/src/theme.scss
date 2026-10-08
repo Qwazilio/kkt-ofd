@@ -1,0 +1,19 @@
+@use "sass:map";
+@use "variables" as v;
+
+@mixin theme-vars($map) {
+  @each $name, $value in $map {
+    --#{$name}: #{$value};
+  }
+}
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+  @include theme-vars(map.get(v.$themes, light));
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  @include theme-vars(map.get(v.$themes, dark));
+}
