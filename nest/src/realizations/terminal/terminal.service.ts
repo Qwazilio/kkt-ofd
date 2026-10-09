@@ -291,7 +291,8 @@ export class TerminalService {
 
       return `From ${company_name} Imported: ${succeeded}/${allTerminals.length}`;
     } catch (err) {
-      throw new NotFoundException(`Failed to import: ${err.message}`);
+      const message = err instanceof Error ? err.message : String(err);
+      throw new NotFoundException(`Failed to import: ${message}`);
     }
   }
 }

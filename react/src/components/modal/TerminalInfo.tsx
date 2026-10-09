@@ -15,26 +15,27 @@ export default function TerminalInfo({id, terminal_id} : TerminalInfoProps) {
     const {closeWindow} = useModalWindow();
     const [terminal, setTerminal] = useState<TerminalEntity | null>(null)
 
-    useEffect(() => {
-        getInfo();
-    }, [])
 
-    const getInfo = async () => {
-        try {
-            const response = await api.get("/terminal", {
-                params: {
-                    id: terminal_id,
-                },
-            });
-            const { data } = response;
-            console.log(response)
-            if (data) {
-                setTerminal(data);
-            } else console.log("no data!");
-        } catch (error) {
-            console.log(`Error get terminal! ${error}`);
+    useEffect(() => {
+        const getInfo = async () => {
+            try {
+                const response = await api.get("/terminal", {
+                    params: {
+                        id: terminal_id,
+                    },
+                });
+                const { data } = response;
+                console.log(response)
+                if (data) {
+                    setTerminal(data);
+                } else console.log("no data!");
+            } catch (error) {
+                console.log(`Error get terminal! ${error}`);
+            }
         }
-    }
+
+        void getInfo();
+    }, [])
 
     const onChangeInfo = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;

@@ -26,7 +26,7 @@ import { User } from './entities/user.entity';
     }),
     TerminalModule,
     CardModule,
-    TaskModule,
+    //TaskModule,
     CompanyModule,
     UserModule,
     AuthModule,

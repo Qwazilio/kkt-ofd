@@ -1,20 +1,15 @@
-# Используем Node.js 18
-FROM node:20-alpine
-
+FROM node:20-alpine AS build
 WORKDIR /app
-
-# Копируем package.json и устанавливаем зависимости
 COPY package*.json ./
-RUN npm install
-
-# Копируем исходный код
+RUN npm ci
 COPY . .
-
-# Собираем TypeScript в JavaScript
 RUN npm run build
 
-# Открываем порт (например, 3001)
+FROM node:20-alpine
+WORKDIR /app
+ENV NODE_ENV=production
+COPY package*.json ./
+RUN npm ci --omit=dev
+COPY --from=build /app/dist ./dist
 EXPOSE 3001
-
-# Запускаем сервер
-CMD ["npm", "run", "start"]
+CMD ["node", "dist/main"]
