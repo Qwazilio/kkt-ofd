@@ -1,0 +1,24 @@
+services:
+  kkt-nest:
+    build: ./nest
+    ports:
+      - "${BACK_PORT:-3001}:3001"
+    environment:
+      PORT: 3001
+      REACT_DOCKER: ${REACT_DOCKER}
+      DB_PATH: /data/database.sqlite
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
+
+  kkt-react:
+    build:
+      context: ./react
+      args:
+        VITE_API_URL: ${VITE_API_URL}
+        VITE_SOCKET_URL: ${VITE_SOCKET_URL}
+    ports:
+      - "${FRONT_PORT:-8080}:80"
+    depends_on:
+      - kkt-nest
+    restart: unless-stopped
