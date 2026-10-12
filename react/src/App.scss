@@ -5,6 +5,8 @@ body{
 }
 
 
+
+
 hr{
   border: 0;
   border-top: 1px solid variables.$border;
@@ -14,16 +16,17 @@ hr{
 input, select, textarea{
   background-color: variables.$surface;
   border: 1px solid variables.$border;
+  accent-color: variables.$primary !important;
 }
 button{
   background-color: variables.$primary;
   color: variables.$on-primary;
 }
 input:focus, button:focus{
-  outline: 2px solid variables.$primary
+  outline: 2px solid variables.$primary !important;
 }
 input:checked {
-  accent-color: variables.$primary;
+  accent-color: variables.$primary !important;
 }
 input[type="checkbox"] {
   color-scheme: inherit;

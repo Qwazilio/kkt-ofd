@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Terminals from "./pages/Terminals.tsx";
 import Login from "./pages/Login.tsx";
-import "./App.module.scss"
+import "./App.scss"
 import {useTheme} from "./hooks/useTheme.ts";
 import NotFound from "./pages/NotFound.tsx";
 

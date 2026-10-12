@@ -1,14 +1,17 @@
 services:
   kkt-nest:
     build: ./nest
+    env_file:
+      - ./nest/.env
     ports:
       - "${BACK_PORT:-3001}:3001"
     environment:
       PORT: 3001
+      REACT: ${REACT}
       REACT_DOCKER: ${REACT_DOCKER}
-      DB_PATH: /data/database.sqlite
+      DB_ROOT: ${DB_ROOT}
     volumes:
-      - ./data:/data
+      - ${DB_MOUNT}:/data
     restart: unless-stopped
 
   kkt-react:
