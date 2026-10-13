@@ -31,6 +31,7 @@ export default function Terminals(){
     if(!connected) return <div>Подключение к серверу...</div>;
     return(
     <div>
+        <title>Терминалы</title>
         <div className={classes.main}>
             <TerminalHeader />
             <TerminalList />

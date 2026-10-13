@@ -13,6 +13,7 @@ export default function Login(){
 
     return (
     <div className={classes.wrapper}>
+        <title>Вход</title>
         <div className={classes.content}>
             <div className={classes.poster}>
                 <h1>Терминалы</h1>

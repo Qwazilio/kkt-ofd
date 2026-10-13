@@ -5,6 +5,7 @@ export default function NotFound() {
     const navigate = useNavigate();
 
     return (<div className={classes.wrapper}>
+        <title>Страница не найдена | 404</title>
         <div className={classes.content}>
             <div className={classes.header}>404</div>
             <div className={classes.body}>
