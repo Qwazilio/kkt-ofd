@@ -25,7 +25,6 @@ export default function TerminalInfo({id, terminal_id} : TerminalInfoProps) {
                     },
                 });
                 const { data } = response;
-                console.log(response)
                 if (data) {
                     setTerminal(data);
                 } else console.log("no data!");
