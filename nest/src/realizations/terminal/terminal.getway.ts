@@ -8,7 +8,6 @@ import {
   ConnectedSocket,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { Terminal } from 'src/entities/terminal.entity';
 import { TerminalService } from 'src/realizations/terminal/terminal.service';
 import { CompanyService } from '../company/company.service';
 import { UpdateTerminalDto } from './dto/update-terminal.dto';
@@ -61,9 +60,10 @@ export class TerminalGateway
         );
         client.emit('importInfo', info);
       } catch (e) {
+        const message = e instanceof Error ? e.message : String(e);
         client.emit(
           'importInfo',
-          `Ошибка импорта ${company.nickname}: ${e.message}`,
+          `Ошибка импорта ${company.nickname}: ${message}`,
         );
       }
     }

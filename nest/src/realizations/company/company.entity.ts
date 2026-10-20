@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Terminal } from './terminal.entity';
+import { Terminal } from '../terminal/terminal.entity';
 
 @Entity('company')
 export class Company {

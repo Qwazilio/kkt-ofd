@@ -1,5 +1,5 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Terminal } from './terminal.entity';
+import { Terminal } from '../terminal/terminal.entity';
 
 @Entity('card')
 export class Card {

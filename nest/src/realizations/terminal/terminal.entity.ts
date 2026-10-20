@@ -6,8 +6,8 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Card } from './card.entity';
-import { Company } from './company.entity';
+import { Card } from '../card/card.entity';
+import { Company } from '../company/company.entity';
 
 @Entity('terminal')
 export class Terminal {

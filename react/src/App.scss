@@ -4,9 +4,6 @@ body{
   background-color: variables.$bg;
 }
 
-
-
-
 hr{
   border: 0;
   border-top: 1px solid variables.$border;
@@ -17,10 +14,19 @@ input, select, textarea{
   background-color: variables.$surface;
   border: 1px solid variables.$border;
   accent-color: variables.$primary !important;
+
+  width: 100%;
+  height: 47px;
+  padding: 0 12px;
+  border-radius: variables.$border-radius-em;
+  color: variables.$text;
+  font: inherit;
 }
 button{
   background-color: variables.$primary;
   color: variables.$on-primary;
+  padding: 5px;
+  border-radius: variables.$border-radius-em;
 }
 input:focus, button:focus{
   outline: 2px solid variables.$primary !important;
@@ -35,3 +41,18 @@ input[type="checkbox"] {
   outline: 0;
 }
 
+
+.page {
+  animation: pageIn 0.22s ease-out;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+// Тем, у кого в системе отключена анимация, не анимируем
+@media (prefers-reduced-motion: reduce) {
+  .wrapper .links .link a { transition: none; }
+  .page { animation: none; }
+}

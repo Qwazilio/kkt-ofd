@@ -5,13 +5,8 @@ import { TaskService } from './task.service';
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
 
-  @Get('spb')
-  async sendSPB(): Promise<void> {
-    await this.taskService.nearWorkTerminalsSPB();
-  }
-
-  @Get('region')
-  async sendRegion(): Promise<void> {
-    await this.taskService.nearWorkTerminalsRegion();
+  @Get()
+  async testTask() {
+    return 'test task';
   }
 }

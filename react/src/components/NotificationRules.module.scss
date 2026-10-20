@@ -1,0 +1,215 @@
+@use '@/variables' as v;
+
+// Локальные производные, чтобы модуль не зависел от лишних токенов
+$field: color-mix(in srgb, #{v.$text} 4%, #{v.$surface});
+$toggle-off: color-mix(in srgb, #{v.$text} 28%, #{v.$surface});
+
+@mixin focus {
+  &:focus-visible { outline: 2px solid v.$primary; outline-offset: 2px; }
+}
+
+// ───── Раскладка ─────
+.cols {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 18px;
+  align-items: start;
+  color: v.$text;
+
+  @media (max-width: 860px) { grid-template-columns: 1fr; }
+}
+
+.card {
+  padding: 20px;
+  background: v.$surface;
+  border: 1px solid v.$border;
+  border-radius: 14px;
+
+  h2 {
+    margin: 0 0 14px;
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: v.$text-muted;
+  }
+}
+
+.stack { display: grid; gap: 14px; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+// ───── Поля ─────
+.field {
+  display: grid;
+  gap: 5px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: v.$text-muted;
+}
+.label { margin-bottom: 8px; font-size: 13.5px; font-weight: 500; color: v.$text-muted; }
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+
+  input { width: 16px; height: 16px; accent-color: v.$primary; }
+}
+
+// ───── Кнопки ─────
+.primary,
+.secondary {
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid v.$border;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  @include focus;
+
+  &:disabled { opacity: 0.45; cursor: default; }
+}
+.secondary { background: v.$surface; color: v.$text; }
+.primary {
+  width: 100%;
+  height: 46px;
+  background: v.$primary;
+  border-color: v.$primary;
+  color: v.$on-primary;
+  font-weight: 600;
+}
+
+// ───── Дни ─────
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.active{
+  background-color: v.$primary !important;
+}
+.chip {
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid v.$border;
+  border-radius: 99px;
+  background: $field;
+  color: v.$text;
+  font: inherit;
+  cursor: pointer;
+  @include focus;
+
+  &[aria-pressed='true'] {
+    background: v.$primary;
+    border-color: v.$primary;
+    color: v.$on-primary;
+    font-weight: 600;
+  }
+}
+.custom { display: flex; gap: 8px; input { width: 130px; } }
+
+// ───── Предпросмотр, ошибки, JSON ─────
+.preview {
+  padding: 12px 14px;
+  border: 1px solid v.$border;
+  border-radius: 10px;
+  background: $field;
+  font-size: 14px;
+
+  b { font-weight: 600; }
+  small { display: block; margin-top: 2px; color: v.$text-muted; font-size: 13px; }
+}
+.error { color: v.$danger; font-size: 13.5px; }
+
+.details {
+  margin-top: 14px;
+  color: v.$text-muted;
+  font-size: 13.5px;
+
+  summary { cursor: pointer; }
+  pre {
+    margin: 8px 0 0;
+    padding: 12px;
+    overflow: auto;
+    border: 1px solid v.$border;
+    border-radius: 10px;
+    background: $field;
+    color: v.$text;
+    font: 12.5px/1.5 ui-monospace, Menlo, Consolas, monospace;
+  }
+}
+
+// ───── Список правил ─────
+.rule {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 12px;
+  padding: 14px 0;
+  border-top: 1px solid v.$border;
+
+  &:first-of-type { border-top: 0; padding-top: 0; }
+}
+.email { font-weight: 600; }
+.text { margin-top: 2px; color: v.$text-muted; b { color: v.$text; font-weight: 500; } }
+.pills { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 6px; }
+.pill {
+  padding: 1px 9px;
+  border-radius: 99px;
+  background: v.$success-bg;
+  color: v.$success;
+  font-size: 12.5px;
+  font-weight: 500;
+}
+.off { background: $field; color: v.$text-muted; }
+.muted { color: v.$text-muted; font-size: 13px; }
+
+.actions { display: flex; align-items: center; gap: 8px; }
+.del {
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+
+  font-size: 20px;
+  cursor: pointer;
+  @include focus;
+
+  svg{
+    color: v.$text;
+  }
+
+  &:hover { background: v.$danger-bg; color: v.$danger; }
+}
+
+// ───── Переключатель ─────
+.switch {
+  position: relative;
+  cursor: pointer;
+
+  input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  i {
+    display: block;
+    width: 38px;
+    height: 22px;
+    border-radius: 99px;
+    background: $toggle-off;
+    transition: background 0.15s;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.15s;
+    }
+  }
+  input:checked + i { background: v.$primary; &::after { transform: translateX(16px); } }
+  input:focus-visible + i { outline: 2px solid v.$primary; outline-offset: 2px; }
+}
+
+.empty { padding: 20px 0; text-align: center; color: v.$text-muted; }
+.note { margin: 14px 0 0; color: v.$text-muted; font-size: 13px; }

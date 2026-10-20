@@ -2,7 +2,6 @@ import useSocket from "../hooks/useSocket.ts";
 import useTerminalEvents from "../hooks/useTerminalEvents.ts";
 import TerminalList from "../components/TerminalList.tsx";
 import classes from "./Terminals.module.scss";
-import {ToastContainer} from "react-toastify";
 import ModalWindows from "../components/ModalWindows.tsx";
 import TerminalHeader from "../components/TerminalHeader.tsx";
 import {useEffect, useState} from "react";
@@ -36,7 +35,6 @@ export default function Terminals(){
             <TerminalHeader />
             <TerminalList />
         </div>
-        <ToastContainer position={"bottom-right"}/>
         <ModalWindows />
     </div>)
 }

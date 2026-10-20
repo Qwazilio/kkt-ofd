@@ -1,16 +1,10 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { TerminalService } from './terminal.service';
-import { CardService } from '../card/card.service';
-import { Terminal } from 'src/entities/terminal.entity';
-import { EmailService } from '../email/email.service';
+import { Terminal } from 'src/realizations/terminal/terminal.entity';
 
 @Controller('terminal')
 export class TerminalController {
-  constructor(
-    private readonly terminalService: TerminalService,
-    private readonly cardService: CardService,
-    private readonly emailTestService: EmailService,
-  ) {}
+  constructor(private readonly terminalService: TerminalService) {}
 
   @Get('list')
   async getTerminals(): Promise<Terminal[]> {

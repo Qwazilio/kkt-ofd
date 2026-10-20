@@ -1,3 +1,5 @@
+import type {MatchField} from "./components/NotificationRules.tsx";
+
 export interface TerminalEntity {
     id?: number
     uid_terminal: string
@@ -32,4 +34,14 @@ export interface CompanyEntity {
     name: string;
     token: string;
     terminals: TerminalEntity[];
+}
+
+export interface RuleDraft {
+    email: string;
+    matchField: MatchField;
+    matchValue: string;
+    /** Дни до окончания срока, за которые слать письмо, Например [30, 14, 5] */
+    dayBefore: number;
+    /** Не писать про терминалы на складе, сломанные и удалённые */
+    skipInactive: boolean;
 }

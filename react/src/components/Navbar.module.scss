@@ -1,0 +1,43 @@
+@use '@/variables' as v;
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  background-color: v.$surface;
+  justify-content: center;
+  border-bottom: 1px solid v.$border;
+
+  .links{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+
+    .link{
+      padding-left: 10px;
+      padding-right: 10px;
+      display: flex;
+      align-items: center;
+
+      a{
+        color: v.$text !important;
+        padding: 10px;
+        border-radius: v.$border-radius-em;
+
+        &[aria-current='page'] {
+          color: v.$on-primary;
+          background-color: v.$primary !important;
+        }
+
+        &:active {
+          transform: scale(0.96);
+        }
+        &:focus-visible {
+          outline: 2px solid v.$primary;
+          outline-offset: 2px;
+        }
+      }
+    }
+  }
+}
+

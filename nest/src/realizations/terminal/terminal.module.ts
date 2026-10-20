@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TerminalService } from './terminal.service';
 import { TerminalController } from './terminal.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Terminal } from 'src/entities/terminal.entity';
+import { Terminal } from 'src/realizations/terminal/terminal.entity';
 import { CardModule } from '../card/card.module';
 import { TerminalGateway } from 'src/realizations/terminal/terminal.getway';
 import { EmailService } from '../email/email.service';
@@ -19,7 +19,7 @@ import { CompanyModule } from '../company/company.module';
       maxRedirects: 5,
     }),
   ],
-  providers: [TerminalService, TerminalGateway, EmailService],
+  providers: [TerminalService, TerminalGateway],
   controllers: [TerminalController],
   exports: [TerminalService],
 })
