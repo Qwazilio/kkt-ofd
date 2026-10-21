@@ -11,8 +11,6 @@ import { Server, Socket } from 'socket.io';
 import { TerminalService } from 'src/realizations/terminal/terminal.service';
 import { CompanyService } from '../company/company.service';
 import { UpdateTerminalDto } from './dto/update-terminal.dto';
-import { UsePipes } from '@nestjs/common';
-import { WsValidationPipe } from '../../pipe/ws-validaton.pipe';
 
 @WebSocketGateway({
   cors: true,
@@ -72,7 +70,7 @@ export class TerminalGateway
     return true;
   }
 
-  @UsePipes(new WsValidationPipe())
+
   @SubscribeMessage('updateTerminal')
   async handleUpdate(@MessageBody() terminal: UpdateTerminalDto) {
     try {

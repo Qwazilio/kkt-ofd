@@ -17,14 +17,22 @@ import { User } from './realizations/user/user.entity';
 import { Notify } from './realizations/notify/notify.entity';
 import { NotifyModule } from './realizations/notify/notify.module';
 import { EmailModule } from './realizations/email/email.module';
+import { JwtModule } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './realizations/auth/auth.guard';
 
 @Module({
   controllers: [AppController],
   imports: [
-    ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: ['.env.local', '.env'],
+    }),
+    ScheduleModule.forRoot(),
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '12h' },
     }),
     TerminalModule,
     CardModule,
@@ -42,6 +50,6 @@ import { EmailModule } from './realizations/email/email.module';
       type: 'sqlite',
     }),
   ],
-  providers: [AppService],
+  providers: [AppService, { provide: APP_GUARD, useClass: AuthGuard }],
 })
 export class AppModule {}

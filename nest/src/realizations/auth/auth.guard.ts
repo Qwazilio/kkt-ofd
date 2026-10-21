@@ -4,24 +4,40 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
+import { IS_PUBLIC_KEY } from '../../decorators/public.decorator';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private readonly jwtService: JwtService) {}
+  constructor(
+    private jwt: JwtService,
+    private reflector: Reflector,
+  ) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
-    const request = context.switchToHttp().getRequest();
-    const [type, token] = request.headers.authorization?.split(' ') ?? [];
+    if (context.getType() !== 'http') return true;
 
-    if (type !== 'Bearer' || !token) {
-      throw new UnauthorizedException();
-    }
+    const isPublic = this.reflector.getAllAndOverride<boolean>(IS_PUBLIC_KEY, [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (isPublic) return true;
+
+    const req = context.switchToHttp().getRequest();
+
+    const token =
+      req.cookies?.access_token ??
+      (req.headers.authorization?.startsWith('Bearer ')
+        ? req.headers.authorization.split(' ')[1]
+        : undefined);
+
+    if (!token) throw new UnauthorizedException('Token required');
 
     try {
-      request.user = await this.jwtService.verifyAsync(token);
+      req.user = await this.jwt.verifyAsync(token, { algorithms: ['HS256'] });
     } catch {
-      throw new UnauthorizedException();
+      throw new UnauthorizedException('Invalid or expired token');
     }
     return true;
   }

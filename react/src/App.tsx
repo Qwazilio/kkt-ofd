@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound.tsx";
 import Notifications from "./pages/Notifications.tsx";
 import {ToastContainer} from "react-toastify";
 import Navbar from "./components/Navbar.tsx";
+import {ProtectedRoute} from "./components/ProtectedRoute.tsx";
 
 function Layout() {
     const { pathname } = useLocation();
@@ -25,12 +26,14 @@ function App() {
     return (
     <Router>
         <Routes>
-            <Route element={<Layout />}>
-                <Route path="/" element={<Login />} />
-                <Route path="/terminals" element={<Terminals />} />
-                <Route path="/notifications" element={<Notifications />} />
-                <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<Login />} />
+            <Route element={<ProtectedRoute />}>
+                <Route element={<Layout />}>
+                    <Route path="/terminals" element={<Terminals />} />
+                    <Route path="/notifications" element={<Notifications />} />
+                </Route>
             </Route>
+            <Route path="*" element={<NotFound />} />
         </Routes>
         <ToastContainer position={"bottom-right"}/>
     </Router>
