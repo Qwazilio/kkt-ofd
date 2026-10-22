@@ -8,7 +8,10 @@ services:
     environment:
       PORT: 3001
       REACT: ${REACT}
-      REACT_DOCKER: ${REACT_DOCKER}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_USER: ${SMTP_USER}
+      SMTP_PASSWORD: ${SMTP_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
       DB_ROOT: ${DB_ROOT}
     volumes:
       - ${DB_MOUNT}:/data
