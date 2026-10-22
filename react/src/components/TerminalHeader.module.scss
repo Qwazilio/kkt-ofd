@@ -11,10 +11,13 @@
     align-items: end;
     grid-gap: 15px;
 
+
     .board{
       display: flex;
       flex-direction: row;
       align-items: end;
+      flex-wrap: wrap;
+      grid-gap: 5px;
 
       .stat{
         border: 1px solid variables.$border;
