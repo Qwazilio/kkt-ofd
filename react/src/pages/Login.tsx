@@ -1,6 +1,6 @@
 import classes from "./Login.module.scss"
 import {useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {type KeyboardEventHandler, useEffect, useState} from "react";
 import api from "../api.ts";
 import {toast} from "react-toastify";
 
@@ -38,6 +38,9 @@ export default function Login(){
             toast.error(e instanceof Error ? e.message : "Ошибка входа");
         }
     }
+    const onKeyDown: KeyboardEventHandler<HTMLInputElement> = (e) => {
+        if(e.key === "Enter") onLogin();
+    }
 
     return (
     <div className={classes.wrapper}>
@@ -58,6 +61,7 @@ export default function Login(){
                         onChange={(e) => setName(e.target.value)}
                         name={"username"}
                         placeholder={"Имя"}
+                        onKeyDown={onKeyDown}
                     />
                 </div>
                 <div className={classes.in}>
@@ -66,6 +70,7 @@ export default function Login(){
                         type={"password"}
                         name={"password"}
                         onChange={(e) => setPassword(e.target.value)}
+                        onKeyDown={onKeyDown}
                     />
                 </div>
 

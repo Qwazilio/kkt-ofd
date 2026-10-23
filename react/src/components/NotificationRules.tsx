@@ -225,6 +225,17 @@ export default function NotificationRules({ onPreview }: NotificationRulesProps)
     getRules();
   }, []);
 
+  const getDaysWord = (n: number): string => {
+    const abs = Math.abs(n);
+    const lastTwo = abs % 100;
+    const last = abs % 10;
+
+    if (lastTwo >= 11 && lastTwo <= 14) return "дней";
+    if (last === 1) return "день";
+    if (last >= 2 && last <= 4) return "дня";
+    return "дней";
+  };
+
   return (
     <div className={s.cols}>
       {/* ───── Форма ───── */}
@@ -314,8 +325,10 @@ export default function NotificationRules({ onPreview }: NotificationRulesProps)
               <div className={s.email}>{r.email}</div>
 
               <div className={s.pills}>
-                {r.dayBefore}
+                {r.dayBefore} {getDaysWord(r.dayBefore)}
                 {r.skipInactive && <span className={s.muted}>без склада и удалённых</span>}
+                <br />
+                <span className={s.muted}>{r.matchField}: {r.matchValue}</span>
               </div>
             </div>
 
