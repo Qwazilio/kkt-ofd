@@ -327,8 +327,9 @@ export default function NotificationRules({ onPreview }: NotificationRulesProps)
               <div className={s.pills}>
                 {r.dayBefore} {getDaysWord(r.dayBefore)}
                 {r.skipInactive && <span className={s.muted}>без склада и удалённых</span>}
-                <br />
-                <span className={s.muted}>{r.matchField}: {r.matchValue}</span>
+              </div>
+              <div className={s.muted}>
+                <span className={s.muted}>Поиск по полю {FIELDS[r.matchField]}: {r.matchValue}</span>
               </div>
             </div>
 
